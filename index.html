@@ -466,11 +466,23 @@ table { border-collapse: collapse; font-family: Arial, sans-serif; font-size: 13
     <div class="form-group"><label>Orate & S-Table</label><select id="cmbOratePPO"></select></div>
     <div class="form-group"><label>Orate VS PPOone Rate</label><select id="cmbOrateVsRate"></select></div>
     <!-- Group 1 Button (Niche shift kiya) -->
-    <div style="display: flex; align-items: flex-end;"><button id="btnRun" class="vba-btn btn-audit" style="width: 100%; height: 20px; position: relative; top: -27px;">RUN AUDIT</button></div>
+<div style="display: flex; align-items: flex-end;">
+    <button id="btnRun"
+            class="vba-btn btn-audit"
+            style="width: 100%; height: 20px; position: relative; top: -27px;">
+        REFRESH
+    </button>
+</div>
     <div class="form-group"><label>T-Table & S-Table & PPOone</label><select id="cmbTTablePPO"></select></div>
     <div class="form-group"><label>T-table VS PPOone Rate</label><select id="cmbTTableVsRate"></select></div>
     <!-- Group 2 Button (Sabse niche shift kiya) -->
-    <div style="display: flex; align-items: flex-end;"><button id="btnClear" class="vba-btn btn-clear" style="width: 100%; height: 20px; transform: translateY(-50px);">CLEAR FRAMES</button></div>
+    <div style="display: flex; align-items: flex-end;">
+    <button id="btnClear"
+            class="vba-btn btn-clear"
+            style="width: 100%; height: 20px; transform: translateY(-50px);">
+        CLEAR FRAMES
+    </button>
+</div>
     <!-- STATUS TERMINAL CONSOLE & STRIPPED RUN TRIGGER -->
     <div class="bottom-action-belt">
         <div class="hint-wrapper" style="display: flex; flex-direction: column; flex-grow: 1;"><textarea id="txtHint" class="hint-box" readonly> Hint</textarea></div>
@@ -3751,7 +3763,35 @@ document.getElementById('btnResetDetailID').addEventListener('click', () => {
     updateHint("✅ All Filters Reset Successfully");
 
 });
+// =========================================================================
+// 🟢 CLEAR
+// =========================================================================
+document.getElementById("btnClear").addEventListener("click", () => {
 
+    // Clear all loaded sheets
+    userPPOoneData = [];
+    userIrateData = [];
+    userSTableData = [];
+    userOrateData = [];
+    userTTableData = [];
+
+    // Clear paste box
+    txtExcelPaste.value = "";
+
+    // Reset dropdowns
+    document.querySelectorAll("select").forEach(s => {
+        s.selectedIndex = 0;
+    });
+
+    // Reset to default sheet
+    activeSheet = "PPOone";
+
+    // Redraw empty view
+    switchSheet("PPOone");
+    renderMatrixView();
+
+    updateHint("✅ ALL SHEETS CLEARED");
+});
 // =========================================================================
 // 🟢 PART 2: STANDALONE ENGINE MODULE - StableTTableSummary LAYOUT GENERATOR
 // =========================================================================
@@ -3770,42 +3810,15 @@ document.getElementById('btnResetDetailID').addEventListener('click', () => {
 // =========================================================================
 // PRIMARY BASE CROSS-AUDIT TRIGGER BUTTON & RESET DIRECTIVES
 // =========================================================================
-        document.getElementById('btnRun').addEventListener('click', () => {
-            if (userPPOoneData.length === 0 || userIrateData.length === 0) {
-                alert("Please paste data rows into both PPOone and Irate sheets first!");
-                return;
-            }
-            switchSheet("Result");
+document.getElementById("btnRun").addEventListener("click", () => {
 
-            const fields = ["drgS", "drgE", "revS", "revE", "procS", "procE", "diagS", "diagE"];
-            let filterID = cmbDetailID.value;
-            let ppoCount = filterID ? userPPOoneData.filter(r => r.id === filterID).length : userPPOoneData.length;
+    window.iratePersistedColors = {};
+    window.ppoPersistedColors = {};
 
-            fields.forEach(f => {
-                for(let p = 0; p < ppoCount; p++) {
-                    let ppoEl = document.getElementById(`ppo_${f}_${p}`);
-                    if(!ppoEl) continue;
+    renderMatrixView();
 
-                    let matched = false;
-                    for(let i = 0; i < userIrateData.length; i++) {
-                        let irateEl = document.getElementById(`irate_${f}_${i}`);
-                        if(!irateEl) continue;
+    updateHint("✅ VIEW REFRESHED");
 
-                        let ppoVal = cleanLeadingZeros(ppoEl.innerText);
-                        let irateVal = cleanLeadingZeros(irateEl.innerText);
-
-                        if(ppoVal === irateVal && ppoVal !== "*") {
-                            ppoEl.className = "cell-green";
-                            irateEl.className = "cell-green";
-                            matched = true;
-                        } else if(!matched && ppoEl.className !== "cell-green") {
-                            ppoEl.className = "cell-red";
-                            if(irateEl.className !== "cell-green") irateEl.className = "cell-red";
-                        }
-                    }
-                }
-            });
-            updateHint("📊 GLOBAL BASE AUDIT ROUTINE RUNPASSED // Intersecting cells flagged successfully.");
 });
 
 // =========================================================================
