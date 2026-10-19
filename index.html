@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AK_AUDITRate_Alpha NEXTGen_ECLIPSE v5.0</title>
+    <title>AK_AUDITRate_Alpha NEXTGen_ECLIPSE v6.0</title>
     <style>
         /* 🧬 HYPER PREMIUM HORIZONTAL & VERTICAL GLOW SLIDERS */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -374,6 +374,66 @@ table { border-collapse: collapse; font-family: Arial, sans-serif; font-size: 13
     100%{opacity:1;}
 }
         td { border: 1px solid #ccc; padding: 6px 12px; }
+/* ===== ECLIPSE v6 layout (clean flex layout; same standard look) ===== */
+.fixed-header-zone{position:fixed;top:0;left:0;right:0;width:auto;padding:4px 8px 6px}
+.title-bar{margin-bottom:4px;padding-bottom:3px;border-bottom:1px solid rgba(0,229,255,.15)}
+.title-bar span{left:0}
+.tb-right{display:flex;gap:8px;align-items:center}
+.xfer-badge{font-size:9px;color:#94a3b8;letter-spacing:.4px;border:1px solid rgba(148,163,184,.3);border-radius:20px;padding:1px 8px;position:static}
+.xfer-badge.ok{color:#00ff88;border-color:rgba(0,255,136,.5);text-shadow:0 0 6px rgba(0,255,136,.4)}
+#cmdSupport{position:static;left:auto;top:auto}
+.hdr-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:5px}
+.capsule-dock{position:static;left:auto;top:auto;flex:none}
+.capsule-btn{left:0}
+.capsule-tally{border-color:rgba(0,229,255,.5);color:#b3f5ff}
+.capsule-tally:hover,.capsule-tally.active{background:rgba(0,229,255,.3);border-color:#00e5ff;box-shadow:inset 0 2px 4px rgba(255,255,255,.2),0 0 10px rgba(0,229,255,.6)}
+.excel-paste-box{position:static;transform:none;left:auto;top:auto;width:auto;flex:1 1 300px;min-width:240px;max-width:640px}
+.excel-textarea{height:30px}
+.ctl{display:flex;align-items:center;gap:6px}
+.ctl label{font-size:9px;font-weight:bold;color:rgba(226,232,240,.55);letter-spacing:.4px}
+.ctl select{width:160px}
+.btn-tally{background:linear-gradient(135deg,rgba(0,255,136,.28),rgba(0,229,255,.28));color:#eafff6;border:1px solid #00ffa6;font-size:11px;padding:6px 18px;box-shadow:0 0 12px rgba(0,255,166,.45),inset 0 1px 2px rgba(255,255,255,.35);letter-spacing:1px}
+.btn-tally:hover{box-shadow:0 0 20px rgba(0,255,166,.9),inset 0 0 10px rgba(0,255,166,.4)}
+.btn-tally:disabled{opacity:.6;cursor:wait}
+.tally-mini{font-size:10px;font-weight:bold;letter-spacing:.3px}
+.tally-mini b.p{color:#00ff88}.tally-mini b.f{color:#ff5470}.tally-mini b.s{color:#9aa7bb}
+.sec-wrap{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.sec-group{flex:1 1 280px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:3px 7px 5px}
+.sec-group h4{font-size:9px;letter-spacing:1.2px;margin:0 0 3px;font-weight:bold}
+.sec-caps{display:flex;flex-wrap:wrap;gap:4px}
+.sec-sep{width:1px;background:rgba(255,255,255,.12);margin:0 3px}
+.sec-cap{font-size:9px;font-weight:bold;padding:2px 9px;border-radius:50px;cursor:pointer;color:#cbd5e1;letter-spacing:.2px;border:1px solid rgba(255,255,255,.18);background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.03));box-shadow:inset 0 1px 2px rgba(255,255,255,.18),0 2px 4px rgba(0,0,0,.35);white-space:nowrap;line-height:14px;transition:all .15s}
+.sec-cap:hover{background:rgba(255,255,255,.2);color:#fff}
+.sec-cap.on{background:rgba(0,229,255,.30);border-color:#00e5ff;color:#fff;box-shadow:0 0 9px rgba(0,229,255,.7)}
+.sec-cap.ok{border-color:rgba(0,255,136,.65);color:#b3ffda}
+.sec-cap.fail{border-color:rgba(255,56,96,.75);color:#ffb3c1}
+.sec-cap.skip{opacity:.5}
+.sec-cap .d{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:4px;background:#475569;vertical-align:middle}
+.sec-cap.ok .d{background:#00ff66;box-shadow:0 0 6px #00ff66}.sec-cap.fail .d{background:#ff0033;box-shadow:0 0 6px #ff0033}
+.hint-row{margin-top:3px}
+.hint-box{position:static;left:auto;top:auto;width:100%;height:58px}
+.dynamic-scroll-zone{margin-top:var(--hdrH,200px);height:calc(100vh - var(--hdrH,200px));position:relative}
+#tallyPanel{display:none;margin-top:var(--hdrH,200px);height:calc(100vh - var(--hdrH,200px));overflow:auto;padding:10px 14px 30px}
+#tallyPanel h2{font-size:13px;color:#00e5ff;letter-spacing:1.5px;margin-bottom:6px}
+#tallyPanel .sum{font-size:11px;margin-bottom:8px;color:#cbd5e1}
+#tallyPanel .sum b{padding:1px 8px;border-radius:20px;margin-right:6px}
+#tallyPanel .sum .p{background:rgba(0,255,136,.15);color:#00ff88}
+#tallyPanel .sum .f{background:rgba(255,56,96,.15);color:#ff7a93}
+#tallyPanel .sum .s{background:rgba(148,163,184,.15);color:#9aa7bb}
+#tallyPanel table.tt{border-collapse:collapse;width:100%;max-width:1100px;background:rgba(4,9,24,.7);border:1px solid rgba(255,255,255,.08)}
+#tallyPanel table.tt th{background:#0b1426;color:#7dd3fc;font-size:10px;letter-spacing:.8px;padding:5px 8px;text-align:left;border:1px solid rgba(255,255,255,.08)}
+#tallyPanel table.tt td{font-size:11px;padding:4px 8px;border:1px solid rgba(255,255,255,.06);color:#e2e8f0;text-align:left}
+#tallyPanel table.tt tr.grp td{background:rgba(255,255,255,.05);font-weight:bold;letter-spacing:1px;font-size:10px}
+#tallyPanel table.tt tr.row{cursor:pointer}
+#tallyPanel table.tt tr.row:hover td{background:rgba(0,229,255,.10)}
+#tallyPanel td.n{text-align:right;font-variant-numeric:tabular-nums}
+.badge{display:inline-block;min-width:62px;text-align:center;font-size:10px;font-weight:bold;border-radius:20px;padding:1px 8px}
+.badge.PASS{background:rgba(0,255,136,.18);color:#00ff88;border:1px solid rgba(0,255,136,.5)}
+.badge.FAIL{background:rgba(255,56,96,.18);color:#ff7a93;border:1px solid rgba(255,56,96,.55)}
+.badge.SKIP{background:rgba(148,163,184,.12);color:#9aa7bb;border:1px solid rgba(148,163,184,.3)}
+.badge.EMPTY{background:rgba(250,204,21,.12);color:#facc15;border:1px solid rgba(250,204,21,.4)}
+#tallyPanel .tools{margin-top:10px;display:flex;gap:8px}
+#tallyPanel table.tt td.n{text-align:right}
     </style>
 </head>
 
@@ -394,102 +454,49 @@ table { border-collapse: collapse; font-family: Arial, sans-serif; font-size: 13
         </div>
     </div>
 <body>
-    <div class="fixed-header-zone">
+    <div class="fixed-header-zone" id="hdrZone">
         <div class="title-bar">
             <span>⚡ AK_AUDITRate_Alpha NEXTGen_ECLIPSE v6.0</span>
-            <button class="vba-btn btn-clear" style="padding: 1px 4px; font-size: 8px;" onclick="window.close()">X</button>
+            <span class="tb-right">
+                <span id="xferBadge" class="xfer-badge">NO TRANSFER YET</span>
+                <button id="cmdSupport" class="vba-btn btn-support">SUPPORT</button>
+                <button class="vba-btn btn-clear" style="padding: 1px 4px; font-size: 8px;" onclick="window.close()">X</button>
+            </span>
         </div>
-<div class="console-top-row">
-    <div class="capsule-dock">
-
-        <button type="button"
-            class="capsule-btn capsule-ppo"
-            onclick="switchSheet('PPOone');">
-            PPOone
-            <span id="ledPPO" class="led-indicator"></span>
-        </button>
-
-        <button type="button"
-            class="capsule-btn capsule-irate"
-            onclick="switchSheet('Irate');">
-            Irate
-            <span id="ledIRATE" class="led-indicator"></span>
-        </button>
-
-        <button type="button"
-            class="capsule-btn capsule-stable"
-            onclick="switchSheet('S_table');">
-            S_table
-            <span id="ledSTABLE" class="led-indicator"></span>
-        </button>
-
-        <button type="button"
-            class="capsule-btn capsule-orate"
-            onclick="switchSheet('Orate');">
-            Orate
-            <span id="ledORATE" class="led-indicator"></span>
-        </button>
-
-        <button type="button"
-            class="capsule-btn capsule-ttable"
-            onclick="switchSheet('TTable');">
-            TTable
-            <span id="ledTTABLE" class="led-indicator"></span>
-        </button>
-
-        <button type="button"
-            class="capsule-btn capsule-result active"
-            onclick="switchSheet('Result');">
-            Result
-            <span id="ledRESULT" class="led-indicator"></span>
-        </button>
+        <div class="hdr-row">
+            <div class="capsule-dock">
+                <button type="button" class="capsule-btn capsule-ppo" onclick="switchSheet('PPOone');">PPOone <span id="ledPPO" class="led-indicator"></span></button>
+                <button type="button" class="capsule-btn capsule-irate" onclick="switchSheet('Irate');">Irate <span id="ledIRATE" class="led-indicator"></span></button>
+                <button type="button" class="capsule-btn capsule-stable" onclick="switchSheet('S_table');">S_table <span id="ledSTABLE" class="led-indicator"></span></button>
+                <button type="button" class="capsule-btn capsule-orate" onclick="switchSheet('Orate');">Orate <span id="ledORATE" class="led-indicator"></span></button>
+                <button type="button" class="capsule-btn capsule-ttable" onclick="switchSheet('TTable');">TTable <span id="ledTTABLE" class="led-indicator"></span></button>
+                <button type="button" class="capsule-btn capsule-result active" onclick="switchSheet('Result');">Result <span id="ledRESULT" class="led-indicator"></span></button>
+                <button type="button" class="capsule-btn capsule-tally" id="capTally" onclick="showTally();">TALLY <span id="ledTALLY" class="led-indicator"></span></button>
+            </div>
+            <div class="excel-paste-box">
+                <label style="font-size:11px; font-weight:bold; display:flex; flex-direction:column; align-items:center;"><span>EXCEL</span><span>DUMP:</span></label>
+                <textarea class="excel-textarea" id="txtExcelPaste" placeholder="Copy rows from Excel, paste here... (or press TRANSFER in Excel)"></textarea>
+            </div>
+        </div>
+        <div class="hdr-row">
+            <div class="ctl"><label>DETAIL ID</label><select id="cmbDetailID"><option value="">-- Dropdown Loaded --</option></select></div>
+            <button id="btnTally" class="vba-btn btn-tally">▶ MASTER TALLY</button>
+            <button id="btnResetDetailID" class="vba-btn btn-reset">RESET LAYOUT</button>
+            <button id="btnRun" class="vba-btn btn-audit">REFRESH</button>
+            <button id="btnClear" class="vba-btn btn-clear">CLEAR FRAMES</button>
+            <span id="tallyMini" class="tally-mini"></span>
+        </div>
+        <div class="sec-wrap" id="secWrap"></div>
+        <div class="hint-row"><textarea id="txtHint" class="hint-box" readonly> Hint</textarea></div>
+        <!-- the six audit dropdowns stay here (hidden) so every audit keeps working exactly as before -->
+        <div id="hiddenSelects" style="display:none">
+            <select id="cmbIratePPO"></select><select id="cmbIrateVsRate"></select>
+            <select id="cmbOratePPO"></select><select id="cmbOrateVsRate"></select>
+            <select id="cmbTTablePPO"></select><select id="cmbTTableVsRate"></select>
+        </div>
     </div>
-</div>
-</div>
-<div style="margin-left: 6px;"><button id="cmdSupport" class="vba-btn btn-support">SUPPORT</button></div>
-</div>
-<div class="excel-paste-box">
-<label style="font-size:14px; font-weight:bold; display:flex; flex-direction:column; align-items:center;">
-    <span>EXCEL</span>
-    <span>DUMP:</span>
-</label>
-<textarea class="excel-textarea" id="txtExcelPaste" placeholder="Copy rows from Excel, paste here...">
-</textarea>
-</div>
-<!-- MINI OPERATOR CONTROL DROPDOWN MATRICES -->
-<div class="grid-layout">
-    <div class="form-group"><label>*************Detail ID*************</label><select id="cmbDetailID"><option value="">-- Dropdown Loaded --</option></select></div>
-    <div class="form-group"><label>Irate & PPOone</label><select id="cmbIratePPO"></select></div>
-    <div class="form-group"><label>Irate VS PPOone Rate</label><select id="cmbIrateVsRate"></select></div>
-    <!-- 🔥 RUN AUDIT BUTTON NOW ON TOP -->
-    <div style="display:flex; align-items:flex-end;"><button id="btnResetDetailID" class="vba-btn btn-reset" style="width:100%; height:20px; position:relative; top:-15px;">RESET LAYOUT</button></div>
-    <div class="form-group"><label>Orate & S-Table</label><select id="cmbOratePPO"></select></div>
-    <div class="form-group"><label>Orate VS PPOone Rate</label><select id="cmbOrateVsRate"></select></div>
-    <!-- Group 1 Button (Niche shift kiya) -->
-<div style="display: flex; align-items: flex-end;">
-    <button id="btnRun"
-            class="vba-btn btn-audit"
-            style="width: 100%; height: 20px; position: relative; top: -27px;">
-        REFRESH
-    </button>
-</div>
-    <div class="form-group"><label>T-Table & S-Table & PPOone</label><select id="cmbTTablePPO"></select></div>
-    <div class="form-group"><label>T-table VS PPOone Rate</label><select id="cmbTTableVsRate"></select></div>
-    <!-- Group 2 Button (Sabse niche shift kiya) -->
-    <div style="display: flex; align-items: flex-end;">
-    <button id="btnClear"
-            class="vba-btn btn-clear"
-            style="width: 100%; height: 20px; transform: translateY(-50px);">
-        CLEAR FRAMES
-    </button>
-</div>
-    <!-- STATUS TERMINAL CONSOLE & STRIPPED RUN TRIGGER -->
-    <div class="bottom-action-belt">
-        <div class="hint-wrapper" style="display: flex; flex-direction: column; flex-grow: 1;"><textarea id="txtHint" class="hint-box" readonly> Hint</textarea></div>
-        <div class="run-container" style="display: none;"></div>
-    </div>
-</div> <!-- fixed-header-zone close -->
     <div class="dynamic-scroll-zone" id="dataDisplayWorkspace"><table class="audit-matrix-table"><thead id="matrixHeader"></thead><tbody id="matrixBody"></tbody></table></div>
+    <div id="tallyPanel"></div>
     <script>
         let loadingForm = true, activeSheet = "PPOone";
         let userPPOoneData = [], userIrateData = [], userSTableData = [], userOrateData = [], userTTableData = [];
@@ -523,11 +530,13 @@ txtExcelPaste.maxLength = 1000000000;
             loadingForm = false; switchSheet('PPOone'); renderMatrixView();
         });
 
-               txtExcelPaste.addEventListener('paste', function() {
-            setTimeout(() => {
-                const rawText = this.value; if(!rawText.trim()) return;
+               window.__doPaste = function(ta, forced) {
+            (() => {
+                const rawText = ta.value; if(!rawText.trim()) return;
+                if (!forced && rawText.startsWith("#ECLIPSE_BUNDLE")) { ta.value = ""; window.ingestBundle(rawText); return; }
                 const pastedText = rawText.toUpperCase();
-                if (pastedText.includes("FEE SCHED")) { activeSheet = "PPOone"; switchSheet("PPOone"); }
+                if (forced) { activeSheet = forced; switchSheet(forced); }
+                else if (pastedText.includes("FEE SCHED")) { activeSheet = "PPOone"; switchSheet("PPOone"); }
                 else if (pastedText.includes("IRATE")) { activeSheet = "Irate"; switchSheet("Irate"); }
                 else if (pastedText.includes("OPS TBL #")) { activeSheet = "TTable"; switchSheet("TTable"); }
                 else if (pastedText.includes("SEARCH/ADD DATA") && pastedText.includes("PER-DIEM")) { activeSheet = "Orate"; switchSheet("Orate"); }
@@ -535,18 +544,18 @@ txtExcelPaste.maxLength = 1000000000;
                 const lines = rawText.split('\n'); let rowsParsed = 0;
                 if(activeSheet === "PPOone") {
                     let pastedText = rawText.toUpperCase();
-                    if (pastedText.includes("MPIN") || pastedText.includes("TAX ID") || pastedText.includes("IRATE")){
+                    if (!forced && (pastedText.includes("MPIN") || pastedText.includes("TAX ID") || pastedText.includes("IRATE"))){
                         switchSheet("Irate"); activeSheet = "Irate"; userIrateData = [];
                         lines.slice(2).forEach(line => {
                             if(!line.trim()) return; let cells = line.split('\t');
                             userIrateData.push({ raw: cells, comp: cells[36] || "", p1: cells[37] || "", p2: cells[38] || "", p3: cells[39] || "" });
                         });
-                        updateHint("IRATE sheet auto detected and loaded."); renderMatrixView(); this.value = ""; return;
+                        updateHint("IRATE sheet auto detected and loaded."); renderMatrixView(); ta.value = ""; return;
                     }
                     userPPOoneData = [];
                     lines.slice(1).forEach(line => {
                         if(!line.trim()) return; let cells = line.split('\t');
-                        if (rowsParsed === 0) { console.log(cells); }
+                        if (rowsParsed === 0) { }
                         if (cells.length >= 43) {
 userPPOoneData.push({
     feeSched: cells[0] || "",
@@ -691,10 +700,11 @@ else if(activeSheet === "TTable") {
             updateHint(`SUCCESS // Loaded ${rowsParsed} active records into TTable storage buffer.`);
         UpdateDataLEDs();
         }
-        else { alert("Please switch to a specific sheet capsule button before pasting raw data records!"); this.value = ""; return; }
-        this.value = ""; if(activeSheet === "PPOone"){ switchSheet("PPOone"); } renderMatrixView();
-    }, 50);
-});
+        else { alert("Please switch to a specific sheet capsule button before pasting raw data records!"); ta.value = ""; return; }
+        ta.value = ""; if(activeSheet === "PPOone"){ switchSheet("PPOone"); } renderMatrixView();
+    })();
+};
+txtExcelPaste.addEventListener('paste', function() { const t = this; setTimeout(() => window.__doPaste(t), 50); });
 
 function populateDetailIDDropdown() {
     cmbDetailID.innerHTML = '<option value="">-- Select --</option>';
@@ -720,12 +730,6 @@ function cleanLeadingZeros(val) {
         }
 function switchSheet(sheetName) {
 
-    console.log("ACTIVE =", sheetName);
-    console.log("PPO", userPPOoneData.length);
-    console.log("IRATE", userIrateData.length);
-    console.log("STABLE", userSTableData.length);
-    console.log("ORATE", userOrateData.length);
-    console.log("TTABLE", userTTableData.length);
 
     activeSheet = sheetName;
 
@@ -813,7 +817,6 @@ function renderMatrixView() {
                     <th>Proc Start</th><th>Proc End</th><th>Diag Start</th><th>Diag End</th><th>HCPC Start</th><th>HCPC End</th><th>DRG Start</th>
                     <th>DRG End</th><th>ICD TYPE</th><th>Auto Filter Group</th>
                 </tr>`;
-                console.log(userPPOoneData);
                 if(userPPOoneData.length === 0) {
                     body.innerHTML = `<tr><td colspan="43" style="color:rgba(255,255,255,0.2); padding:15px; font-weight:bold; font-size:12px; text-align:center;">Buffer empty. Paste PPOone rows.</td></tr>`;
 return;
@@ -1556,7 +1559,6 @@ document.querySelectorAll(".header-filter-select").forEach(sel => {
 // PART 14: STANDALONE ENGINE MODULE - AUTOMATED StableSummary GENERATOR
 // =========================================================================
 function StableSummary(filterID) {
-    console.log(`Executing StableSummary array tracking for Detail ID: ${filterID}`);
     if (userPPOoneData.length === 0) return;
     activeSheet = "Result";
     document.querySelectorAll('.capsule-btn').forEach(b => b.classList.remove('active'));
@@ -1603,13 +1605,6 @@ cmbIratePPO.addEventListener('change', function() {
         case "ALL":
             if (checkDetailID()) StableSummary(cmbDetailID.value);
             break;
-            setTimeout(() => {
-    scrollToSection(
-        document.querySelector(".banner-row"),
-        250
-    );
-
-}, 70);
         case "DRG/REV/PROC/DIAG":
             if (checkDetailID()) {
                 StableSummary(cmbDetailID.value);
@@ -1629,14 +1624,6 @@ cmbIratePPO.addEventListener('change', function() {
         case "ALL":
             if (checkDetailID()) StableSummary(cmbDetailID.value);
             break;
-            setTimeout(() => {
-
-    scrollToSection(
-        document.querySelector(".banner-row"),
-        250
-    );
-
-}, 70);
         case "Stable SVC / Orate SVC": AuditStableSvcOrateSvc(); break;
         case "GRP IND 01": AuditGrpInd01(); break;
         case "GRP IND 02": AuditGrpInd02(); break;
@@ -1725,99 +1712,66 @@ cmbTTablePPO.addEventListener('change', function() {
         
 // 🟢 Audit DRG/REV/PROC/DIAG
 function AuditDRGREVPROCDIAG() {
-    ResetAuditColors(); window.ppoPersistedColors = {};
-    
-    // 1. IRATE ke saare cells ka rang saaf (Reset) karein
-    document.querySelectorAll("[id^='irate_row_']").forEach(row => row.querySelectorAll("td").forEach(td => { td.style.backgroundColor = ""; td.style.color = ""; }));
-    console.log("DRG REV PROC DIAG AUDIT STARTED (GLOBAL EQUALITY ENGINE)");
-
-    // VBA FILTER-SAFE HACK: Filter values yaad rakho aur temporary kholo
-    const dropdowns = document.querySelectorAll(".ppo-filter-dropdown"), ppoRows = document.querySelectorAll("tr[id^='ppo_row_']");
-    let savedFilters = {};
-    dropdowns.forEach(sel => { if (sel.value) savedFilters[sel.getAttribute("data-col")] = sel.value; sel.value = ""; });
-    console.log("DOM PPO Rows:", ppoRows.length);
-    console.log("Dataset PPO Rows:", userPPOoneData.filter(r => String(r.detailId).trim() === cmbDetailID.value).length);
-    ppoRows.forEach(row => row.style.display = "");
-
-    // Column mapping index (PPO Index vs IRATE Prefix)
-    const mappings = [{ ppoIdx: 1, iratePre: "irate_drgS_" }, { ppoIdx: 2, iratePre: "irate_drgE_" }, { ppoIdx: 3, iratePre: "irate_revS_" }, { ppoIdx: 4, iratePre: "irate_revE_" }, { ppoIdx: 5, iratePre: "irate_procS_" }, { ppoIdx: 6, iratePre: "irate_procE_" }, { ppoIdx: 7, iratePre: "irate_diagS_" }, { ppoIdx: 8, iratePre: "irate_diagE_" }];
-
-    // EXACT VBA CleanLeadingZeros TWIN FUNCTION
-const parseValue = (cell) => {
-    if (!cell) return "";
-    let raw = cell.querySelector("span") ? cell.querySelector("span").innerText : cell.innerText;
-    if (raw.includes("▼")) raw = raw.split("▼")[0];
-    let cleaned = String(raw || "").trim().toUpperCase();
-    if (cleaned === "" || cleaned === "MISC") return "";
-    if (cleaned === "ALL" || cleaned === "N") return "*";
-    return /^\d+$/.test(cleaned) ? String(parseInt(cleaned, 10)) : cleaned;
-};
-
-    const checkMatch = (v1, v2) => {
-        if (v1 === "*" || v2 === "*") return true; if (v1 === v2) return true;
-        let items1 = v1.split(/[\s,|+\n]+/).map(i => i.trim()).filter(Boolean);
-        let items2 = v2.split(/[\s,|+\n]+/).map(i => i.trim()).filter(Boolean);
-        return items1.some(item => items2.includes(item)) || items2.some(item => items1.includes(item));
+    ResetAuditColors(); window.ppoPersistedColors = {}; window.iratePersistedColors = {};
+    const GREEN = ["#d4edda", "#155724"], RED = ["#f8d7da", "#721c24"];
+    const ppoF = ["drgStart","drgEnd","revStart","revEnd","procStart","procEnd","diagStart","diagEnd"];
+    const irF  = ["drgS","drgE","revS","revE","procS","procE","diagS","diagE"];
+    const pre  = ["drgS","drgE","revS","revE","procS","procE","diagS","diagE"];
+    const clean = v => {
+        let c = String(v == null ? "" : v).trim().toUpperCase();
+        if (c === "" || c === "MISC") return "";
+        if (c === "ALL" || c === "N") return "*";
+        return /^\d+$/.test(c) ? String(parseInt(c, 10)) : c;
     };
-
-    // 2. Poori range ko default RED rang do (VBA Step 1)
-    ppoRows.forEach((row, rIdx) => {
-        mappings.forEach(({ ppoIdx }) => {
-            const cell = row.children[ppoIdx];
-            if (cell && parseValue(cell) !== "") {
-                cell.style.backgroundColor = "#f8d7da"; cell.style.color = "#721c24";
-                window.ppoPersistedColors[`row_${rIdx}_col_${ppoIdx}`] = { bg: "#f8d7da", fg: "#721c24" };
-            }
+    const toks = s => s.split(/[\s,|+\n]+/).filter(Boolean);
+    const ppo = getFilteredPPOData(), n = ppo.length;
+    const ppoPaint = [], irPaint = [];                       // [rowIdx, colIdx, ok]
+    for (let k = 0; k < 8; k++) {
+        const vals = ppo.map(r => clean(r[ppoF[k]]));
+        const matched = new Uint8Array(n), byTok = new Map(); let nonEmpty = [];
+        vals.forEach((v, i) => {
+            if (v === "") return; nonEmpty.push(i);
+            if (v === "*") return;
+            const set = new Set(toks(v)); set.add(v);
+            set.forEach(t => { let a = byTok.get(t); if (!a) byTok.set(t, a = []); a.push(i); });
         });
-});
-
-// 3. GLOBAL MATCHING ENGINE: IRATE ko PPO (Hidden + Visible) se tally karo
-for (let r = 0; r < userIrateData.length; r++) {
-        mappings.forEach(({ ppoIdx, iratePre }) => {
-            const irateCell = document.getElementById(`${iratePre}${r}`); if (!irateCell) return;
-            let irateVal = parseValue(irateCell); if (irateVal === "") return;
-            let matchFound = false;
-
-            ppoRows.forEach((ppoRow, ppoRowIdx) => {
-                const ppoCell = ppoRow.children[ppoIdx]; if (!ppoCell) return;
-                let ppoVal = parseValue(ppoCell);
-                console.log("PPO:", ppoVal, "IRATE:", irateVal);
-                if (ppoVal !== "" && checkMatch(ppoVal, irateVal)) {
-                    matchFound = true;
-                    ppoCell.style.backgroundColor = "#d4edda"; ppoCell.style.color = "#155724";
-                    window.ppoPersistedColors[`row_${ppoRowIdx}_col_${ppoIdx}`] = { bg: "#d4edda", fg: "#155724" };
+        const wild = nonEmpty.filter(i => vals[i] === "*");
+        const memo = new Map();                       // same Irate value is checked only once
+        userIrateData.forEach((r, ri) => {
+            const iv = clean(r[irF[k]]); if (iv === "") return;
+            let hit = memo.get(iv);
+            if (hit === undefined) {
+                hit = false;
+                if (iv === "*") { nonEmpty.forEach(i => matched[i] = 1); hit = nonEmpty.length > 0; }
+                else {
+                    if (wild.length) { hit = true; wild.forEach(i => matched[i] = 1); }
+                    const seen = new Set([iv]); toks(iv).forEach(t => seen.add(t));
+                    seen.forEach(t => { const a = byTok.get(t); if (a) { hit = true; a.forEach(i => matched[i] = 1); } });
                 }
-            });
-
-            window.iratePersistedColors = window.iratePersistedColors || {};
-            if (matchFound) {
-                irateCell.style.backgroundColor = "#d4edda"; irateCell.style.color = "#155724";
-                window.iratePersistedColors[`${iratePre}${r}`] = { bg: "#d4edda", fg: "#155724" };
-            } else {
-                irateCell.style.backgroundColor = "#f8d7da"; irateCell.style.color = "#721c24";
-                window.iratePersistedColors[`${iratePre}${r}`] = { bg: "#f8d7da", fg: "#721c24" };
+                memo.set(iv, hit);
             }
-});
-}
-
-// VBA RESTORE FILTER HACK: User ka filter wapas lagao
-for (let cIdx in savedFilters) {
-        const selectBox = document.querySelector(`.ppo-filter-dropdown[data-col='${cIdx}']`);
-        if (selectBox) selectBox.value = savedFilters[cIdx];
+            irPaint.push([ri, k, hit]);
+        });
+        nonEmpty.forEach(i => ppoPaint.push([i, k, matched[i] === 1]));
     }
-
-    ppoRows.forEach(row => {
-        let showRow = true;
-        for (let cIdx in savedFilters) { if ((row.children[cIdx] ? row.children[cIdx].innerText.trim() : "") !== savedFilters[cIdx]) { showRow = false; break; } }
-        row.style.display = showRow ? "" : "none";
+    // paint once
+    const rows = new Array(n);
+    ppoPaint.forEach(([i, k, ok]) => {
+        const row = rows[i] || (rows[i] = document.getElementById("ppo_row_" + i)); if (!row) return;
+        const c = row.children[k + 1]; if (!c) return; const col = ok ? GREEN : RED;
+        c.style.backgroundColor = col[0]; c.style.color = col[1];
+        window.ppoPersistedColors[`row_${i}_col_${k + 1}`] = { bg: col[0], fg: col[1] };
     });
-    if (typeof updateHint === "function") {
-        updateHint("DRG / REV / PROC / DIAG Audit Completed\n" +
-                   "• Irate DRG (FRM-TO) will match to ppoONE DRG Start - DRG End\n" +
-                   "• Irate REV/PROC CD (FRM-TO) will match to ppoONE Rev Start - Rev End\n" +
-                   "• Irate ICD PROC CD (FRM-TO) will match to ppoONE Proc Start - Proc End\n" +
-                   "• Irate PRIME DX CD (FROM-TO) will match to ppoONE Diag Start - Diag End");
-    }
+    irPaint.forEach(([ri, k, ok]) => {
+        const id = "irate_" + pre[k] + "_" + ri, c = document.getElementById(id); if (!c) return;
+        const col = ok ? GREEN : RED; c.style.backgroundColor = col[0]; c.style.color = col[1];
+        window.iratePersistedColors[id] = { bg: col[0], fg: col[1] };
+    });
+    updateHint("DRG / REV / PROC / DIAG Audit Completed\n" +
+        "• Irate DRG (FRM-TO) will match to ppoONE DRG Start - DRG End\n" +
+        "• Irate REV/PROC CD (FRM-TO) will match to ppoONE Rev Start - Rev End\n" +
+        "• Irate ICD PROC CD (FRM-TO) will match to ppoONE Proc Start - Proc End\n" +
+        "• Irate PRIME DX CD (FROM-TO) will match to ppoONE Diag Start - Diag End");
     scrollToSection(document.querySelector(".banner-row"), 50);
 }
 
@@ -2094,7 +2048,6 @@ userIrateData.forEach((r, idx) => {
                 const cls = String(ppoRow.cls || "").trim().toUpperCase();
                 const rate = Number(ppoRow.rate || 0);
 
-                console.log("CLASS =", cls, "RATE =", rate, "PYMT1 =", pymt1, "PYMT2 =", pymt2);
 
                 const ppoRateCell = document.getElementById(`ppo_rate_${pIdx}`);
                 const ppoClassCell = document.getElementById(`ppo_class_${pIdx}`);
@@ -3605,69 +3558,8 @@ function AuditTTableC5() {
 // =========================================================================
 // PART 2: PRIMARY BASE CROSS-AUDIT INTERSECT ACTION ENGINE
 // =========================================================================
-document.getElementById('btnRun').addEventListener('click', () => {
+// (old RUN handler removed: MASTER TALLY and the section buttons run the audits now)
 
-    if (!checkDetailID()) return;
-
-    switchSheet("Result");
-
-    const detId = cmbDetailID.value;
-
-    const audits = {
-
-        "ALL": () => StableSummary(detId),
-
-        "DRG/REV/PROC/DIAG": () => {
-            StableSummary(detId);
-            setTimeout(() => AuditDRGREVPROCDIAG(), 100);
-        },
-
-        "COMP IND is P": AuditCompIndP,
-        "COMP IND is D": AuditCompIndD,
-        "COMP IND is L": AuditCompIndL,
-        "COMP IND is LB": AuditCompIndLB,
-        "COMP IND is AG": AuditCompIndAG,
-        "COMP IND is AG,P123": AuditCompIndAGP123,
-        "COMP IND is AI": AuditCompIndAI,
-
-        "Stable SVC / Orate SVC": AuditStableSvcOrateSvc,
-        "GRP IND 01": AuditGrpInd01,
-        "GRP IND 02": AuditGrpInd02,
-        "No Group": AuditNoGroup,
-
-        "COMP IND as C1": AuditOrateC1,
-        "COMP IND as C4": AuditOrateC4,
-        "COMP IND as C5": AuditOrateC5,
-        "COMP IND as P": AuditOrateP,
-        "COMP IND as L": AuditOrateL,
-        "COMP IND as AG(Rate/Min Dollar)": AuditOrateAGRateMinDollar,
-        "COMP IND as AG(All Rate)": AuditOrateAGAllRate,
-        "COMP IND as AI": AuditOrateAI,
-
-        "Stable SVC / Ttable SVC": AuditStableSvcTTableSvc,
-        "MP2%,MP3%/ Occur/ PROC/HCPC": AuditMP2MP3PROCHCPC,
-
-        "COMP IND C1": AuditTTableC1,
-        "COMP IND C4": AuditTTableC4,
-        "COMP IND C5": AuditTTableC5
-    };
-
-    const selectedAudit =
-        cmbIratePPO.value ||
-        cmbIrateVsRate.value ||
-        cmbOratePPO.value ||
-        cmbOrateVsRate.value ||
-        cmbTTablePPO.value ||
-        cmbTTableVsRate.value;
-
-    if (selectedAudit && audits[selectedAudit]) {
-        audits[selectedAudit]();
-        return;
-    }
-
-    alert("Please select an Audit Type first.");
-
-});
 function initPPOFilters() {
     const dropdowns = document.querySelectorAll(".ppo-filter-dropdown"), rows = document.querySelectorAll(".ppo-data-row");
     if (rows.length === 0) return;
@@ -3796,7 +3688,6 @@ document.getElementById("btnClear").addEventListener("click", () => {
 // 🟢 PART 2: STANDALONE ENGINE MODULE - StableTTableSummary LAYOUT GENERATOR
 // =========================================================================
         function StableTTableSummary(filterID) {
-            console.log(`Executing StableTTableSummary array tracking for Detail ID: ${filterID}`);
             if (userPPOoneData.length === 0) return;
 
             // Trigger active capsule to Result panel view cleanly
@@ -3811,6 +3702,8 @@ document.getElementById("btnClear").addEventListener("click", () => {
 // PRIMARY BASE CROSS-AUDIT TRIGGER BUTTON & RESET DIRECTIVES
 // =========================================================================
 document.getElementById("btnRun").addEventListener("click", () => {
+
+    if (window.TALLY_VISIBLE) { window.runMasterTally(); return; }
 
     window.iratePersistedColors = {};
     window.ppoPersistedColors = {};
@@ -3962,7 +3855,7 @@ function triggerPremiumLockdown() {
                     color: #717f96; 
                     font-weight: 400;
                     letter-spacing: 0.3px;
-                ">AK_AUDITRate_Alpha NEXTGen_ECLIPSE v5.0</h3>
+                ">AK_AUDITRate_Alpha NEXTGen_ECLIPSE v6.0</h3>
                 
                 <!-- Clean Digital Divider -->
                 <div style="height: 1px; background: rgba(255,255,255,0.06); width: 100%; margin-bottom: 24px;"></div>
@@ -4064,6 +3957,234 @@ document.getElementById("cmdSupport").addEventListener("click", function () {
     );
 
 });
+</script>
+<script>
+// =========================================================================
+// ECLIPSE v6 ADD-ON: section buttons, MASTER TALLY, Excel TRANSFER loader
+// (the 27 audit engines above are untouched - the 6 dropdowns are only hidden)
+// =========================================================================
+(function () {
+    "use strict";
+    const $ = id => document.getElementById(id);
+    const NAMES = { P: "PPOone", I: "Irate", S: "S_table", O: "Orate", T: "TTable" };
+    const dataOf = () => ({ P: userPPOoneData, I: userIrateData, S: userSTableData, O: userOrateData, T: userTTableData });
+    const HIDDEN_SELECTS = ["cmbIratePPO", "cmbIrateVsRate", "cmbOratePPO", "cmbOrateVsRate", "cmbTTablePPO", "cmbTTableVsRate"];
+
+    // [select id, option value, button label, sheets needed, view-only?]
+    const GROUPS = [
+        { title: "IRATE  VS  PPOone", col: "#f1917f", items: [
+            ["cmbIratePPO", "ALL", "ALL", "P", true],
+            ["cmbIratePPO", "DRG/REV/PROC/DIAG", "DRG / REV / PROC / DIAG", "PI"],
+            "|",
+            ["cmbIrateVsRate", "COMP IND is P", "COMP IND P", "PI"],
+            ["cmbIrateVsRate", "COMP IND is D", "COMP IND D", "PI"],
+            ["cmbIrateVsRate", "COMP IND is L", "COMP IND L", "PI"],
+            ["cmbIrateVsRate", "COMP IND is LB", "COMP IND LB", "PI"],
+            ["cmbIrateVsRate", "COMP IND is AG", "COMP IND AG", "PI"],
+            ["cmbIrateVsRate", "COMP IND is AG,P123", "COMP IND AG,P123", "PI"],
+            ["cmbIrateVsRate", "COMP IND is AI", "COMP IND AI", "PI"] ] },
+        { title: "ORATE  &  S-TABLE  VS  PPOone", col: "#fad2b9", items: [
+            ["cmbOratePPO", "ALL", "ALL", "P", true],
+            ["cmbOratePPO", "Stable SVC / Orate SVC", "STABLE SVC / ORATE SVC", "SO"],
+            ["cmbOratePPO", "GRP IND 01", "GRP IND 01", "SP"],
+            ["cmbOratePPO", "GRP IND 02", "GRP IND 02", "SP"],
+            ["cmbOratePPO", "No Group", "NO GROUP", "SP"],
+            "|",
+            ["cmbOrateVsRate", "COMP IND as C1", "COMP IND C1", "OP"],
+            ["cmbOrateVsRate", "COMP IND as C4", "COMP IND C4", "OP"],
+            ["cmbOrateVsRate", "COMP IND as C5", "COMP IND C5", "OP"],
+            ["cmbOrateVsRate", "COMP IND as D", "COMP IND D", "OP"],
+            ["cmbOrateVsRate", "COMP IND as P", "COMP IND P", "OP"],
+            ["cmbOrateVsRate", "COMP IND as L", "COMP IND L", "OP"],
+            ["cmbOrateVsRate", "COMP IND as AG(Rate/Min Dollar)", "AG (RATE/MIN $)", "OP"],
+            ["cmbOrateVsRate", "COMP IND as AG(All Rate)", "AG (ALL RATE)", "OP"],
+            ["cmbOrateVsRate", "COMP IND as AI", "COMP IND AI", "OP"] ] },
+        { title: "T-TABLE  &  S-TABLE  VS  PPOone", col: "#c3ebe6", items: [
+            ["cmbTTablePPO", "ALL", "ALL", "P", true],
+            ["cmbTTablePPO", "Stable SVC / Ttable SVC", "STABLE SVC / TTABLE SVC", "ST"],
+            ["cmbTTablePPO", "MP2%,MP3%/ Occur/ PROC/HCPC", "MP2 / MP3 / OCCUR / PROC / HCPC", "PT"],
+            "|",
+            ["cmbTTableVsRate", "COMP IND C1", "COMP IND C1", "PT"],
+            ["cmbTTableVsRate", "COMP IND C4", "COMP IND C4", "PT"],
+            ["cmbTTableVsRate", "COMP IND C5", "COMP IND C5", "PT"] ] }
+    ];
+    const ITEMS = [];            // flat list of real items
+    GROUPS.forEach(g => g.items.forEach(a => { if (a === "|") return; ITEMS.push({ sel: a[0], val: a[1], label: a[2], need: a[3].split(""), view: !!a[4], grp: g.title, col: g.col }); }));
+    let results = [], busy = false, tallyShown = false, lastStamp = "";
+
+    // ---------- build the section buttons ----------
+    function buildSections() {
+        const wrap = $("secWrap"); wrap.innerHTML = "";
+        GROUPS.forEach(g => {
+            const box = document.createElement("div"); box.className = "sec-group";
+            const h = document.createElement("h4"); h.textContent = g.title; h.style.color = g.col; box.appendChild(h);
+            const caps = document.createElement("div"); caps.className = "sec-caps";
+            g.items.forEach(a => {
+                if (a === "|") { const s = document.createElement("span"); s.className = "sec-sep"; caps.appendChild(s); return; }
+                const it = ITEMS.find(x => x.sel === a[0] && x.val === a[1]);
+                const b = document.createElement("button"); b.type = "button"; b.className = "sec-cap";
+                b.innerHTML = '<span class="d"></span>' + it.label; b.title = it.val; it.btn = b;
+                b.addEventListener("click", () => openSection(it));
+                caps.appendChild(b);
+            });
+            box.appendChild(caps); wrap.appendChild(box);
+        });
+    }
+    function paintCaps() {
+        ITEMS.forEach(it => {
+            if (!it.btn) return;
+            it.btn.classList.remove("ok", "fail", "skip");
+            const r = results.find(x => x.it === it); if (!r) return;
+            it.btn.classList.add(r.status === "PASS" ? "ok" : r.status === "FAIL" ? "fail" : "skip");
+        });
+    }
+
+    // ---------- open one section (same as choosing it in the old dropdown) ----------
+    function selectOnly(it) {
+        HIDDEN_SELECTS.forEach(id => { $(id).selectedIndex = 0; });
+        const s = $(it.sel); s.value = it.val;
+        s.dispatchEvent(new Event("change"));
+    }
+    function missingOf(it) { const d = dataOf(); return it.need.filter(k => !d[k] || d[k].length === 0).map(k => NAMES[k]); }
+    function openSection(it) {
+        hideTally(true);
+        const miss = missingOf(it);
+        ITEMS.forEach(x => x.btn && x.btn.classList.remove("on")); it.btn.classList.add("on");
+        if (miss.length) { updateHint("'" + it.label + "' needs data in: " + miss.join(", ") + ".\nPress TRANSFER in Excel or paste the sheet into the EXCEL DUMP box."); return; }
+        selectOnly(it);
+    }
+
+    // ---------- MASTER TALLY ----------
+    const GREEN = "rgb(212, 237, 218)", RED = "rgb(248, 215, 218)";
+    function countColours() {
+        let g = 0, r = 0;
+        document.querySelectorAll("#matrixBody td").forEach(td => { const c = td.style.backgroundColor; if (c === GREEN) g++; else if (c === RED) r++; });
+        return { g, r };
+    }
+    async function runMasterTally() {
+        if (busy) return; busy = true;
+        const btn = $("btnTally"); btn.disabled = true;
+        hideTally(true);
+        $("dataDisplayWorkspace").style.display = "none";          // nothing to draw on screen while the 26 checks run = much faster
+        const jobs = ITEMS.filter(i => !i.view), realST = window.setTimeout, t0 = performance.now();
+        results = [];
+        for (let n = 0; n < jobs.length; n++) {
+            const it = jobs[n], miss = missingOf(it), rec = { it, miss, g: 0, r: 0, status: "SKIP" };
+            if (!miss.length) {
+                try {
+                    window.setTimeout = (f, ms, ...a) => { if (typeof f === "function") f(...a); return 0; };   // run the audit's delayed steps at once
+                    selectOnly(it);
+                } catch (e) { rec.status = "ERROR"; rec.err = e.message; }
+                finally { window.setTimeout = realST; }
+                if (rec.status !== "ERROR") {
+                    const c = countColours(); rec.g = c.g; rec.r = c.r;
+                    rec.status = c.r > 0 ? "FAIL" : (c.g > 0 ? "PASS" : "EMPTY");
+                }
+            }
+            results.push(rec);
+            btn.textContent = "TALLY " + (n + 1) + " / " + jobs.length;
+            await new Promise(res => realST(res, 0));
+        }
+        HIDDEN_SELECTS.forEach(id => { $(id).selectedIndex = 0; });
+        lastStamp = new Date().toLocaleTimeString();
+        btn.disabled = false; btn.textContent = "▶ MASTER TALLY"; busy = false;
+        const secs = ((performance.now() - t0) / 1000).toFixed(1);
+        paintCaps(); showTally(secs);
+        const c = counts();
+        updateHint("MASTER TALLY finished in " + secs + " s\nPASS " + c.p + "  |  FAIL " + c.f + "  |  EMPTY " + c.e + "  |  SKIPPED (no data) " + c.s + "\nClick any row or any section button to open that coloured view.");
+    }
+    function counts() {
+        const c = { p: 0, f: 0, e: 0, s: 0 };
+        results.forEach(r => { if (r.status === "PASS") c.p++; else if (r.status === "FAIL") c.f++; else if (r.status === "EMPTY") c.e++; else c.s++; });
+        return c;
+    }
+    function esc(s) { return String(s).replace(/[&<>"]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch])); }
+    function showTally(secs) {
+        const panel = $("tallyPanel");
+        document.querySelectorAll(".capsule-btn").forEach(b => b.classList.remove("active"));
+        $("capTally").classList.add("active");
+        $("dataDisplayWorkspace").style.display = "none"; panel.style.display = "block"; tallyShown = true; window.TALLY_VISIBLE = true;
+        if (!results.length) {
+            panel.innerHTML = "<h2>MASTER TALLY</h2><div class='sum'>No tally yet. Press <b class='p'>▶ MASTER TALLY</b> - every check runs in one go.</div>";
+            return;
+        }
+        const c = counts(); let html = "<h2>MASTER TALLY</h2><div class='sum'><b class='p'>PASS " + c.p + "</b><b class='f'>FAIL " + c.f + "</b><b class='s'>EMPTY " + c.e + " &nbsp;|&nbsp; SKIPPED " + c.s + "</b> run at " + esc(lastStamp) + (secs ? " in " + secs + " s" : "") + " &nbsp; <span id='tStale' style='color:#facc15'></span></div>";
+        html += "<table class='tt'><tr><th style='width:34px'>#</th><th>CHECK</th><th>NEEDS</th><th style='text-align:right'>MATCHED (green)</th><th style='text-align:right'>NOT MATCHED (red)</th><th>RESULT</th></tr>";
+        let last = "", n = 0;
+        results.forEach((r, i) => {
+            if (r.it.grp !== last) { last = r.it.grp; html += "<tr class='grp'><td colspan='6' style='color:" + r.it.col + "'>" + esc(last) + "</td></tr>"; }
+            n++;
+            const need = r.it.need.map(k => NAMES[k]).join(" + ");
+            html += "<tr class='row' data-i='" + i + "'><td>" + n + "</td><td>" + esc(r.it.label) + "</td><td style='color:#94a3b8'>" + need + (r.miss.length ? " <span style='color:#facc15'>(missing: " + r.miss.join(", ") + ")</span>" : "") + "</td><td class='n'>" + (r.status === "SKIP" ? "-" : r.g) + "</td><td class='n'>" + (r.status === "SKIP" ? "-" : r.r) + "</td><td><span class='badge " + r.status + "'>" + (r.status === "ERROR" ? "ERROR" : r.status) + "</span></td></tr>";
+        });
+        html += "</table><div class='tools'><button class='vba-btn btn-tally' id='btnTallyAgain'>▶ RUN AGAIN</button><button class='vba-btn btn-reset' id='btnTallyCopy'>COPY RESULT</button></div>";
+        panel.innerHTML = html;
+        panel.querySelectorAll("tr.row").forEach(tr => tr.addEventListener("click", () => openSection(results[+tr.dataset.i].it)));
+        $("btnTallyAgain").onclick = runMasterTally;
+        $("btnTallyCopy").onclick = () => {
+            const t = ["Check\tNeeds\tMatched\tNot matched\tResult"].concat(results.map(r => [r.it.grp + " - " + r.it.label, r.it.need.map(k => NAMES[k]).join("+"), r.g, r.r, r.status].join("\t"))).join("\n");
+            try { navigator.clipboard.writeText(t); updateHint("Tally result copied. Paste it into Excel / mail."); } catch (e) { updateHint("Copy not allowed by the browser."); }
+        };
+        const mini = $("tallyMini"); mini.innerHTML = "<b class='p'>PASS " + c.p + "</b> &nbsp; <b class='f'>FAIL " + c.f + "</b> &nbsp; <b class='s'>EMPTY " + c.e + " / SKIP " + c.s + "</b>";
+        const led = $("ledTALLY"); if (led) led.className = "led-indicator " + (c.f === 0 && c.p > 0 ? "led-green" : "led-red");
+    }
+    function hideTally(silent) {
+        if (!tallyShown && silent) return;
+        $("tallyPanel").style.display = "none"; $("dataDisplayWorkspace").style.display = ""; tallyShown = false; window.TALLY_VISIBLE = false;
+        $("capTally") && $("capTally").classList.remove("active");
+    }
+    window.showTally = showTally; window.hideTally = hideTally; window.runMasterTally = runMasterTally;
+
+    // switching a sheet capsule always leaves the tally view
+    const _sw = window.switchSheet;
+    window.switchSheet = function (n) { hideTally(true); ITEMS.forEach(x => x.btn && x.btn.classList.remove("on")); return _sw(n); };
+
+    // Detail ID changed -> tally is stale
+    $("cmbDetailID").addEventListener("change", () => { const s = $("tStale"); if (s) s.textContent = "Detail ID changed - press MASTER TALLY again."; });
+
+    // ---------- TRANSFER from Excel ----------
+    window.ingestBundle = function (text) {
+        const parts = String(text).replace(/\r/g, "").split("\n@@SHEET|");
+        const head = parts.shift(), stamp = (head.split("|")[1] || "").trim();
+        const map = { Irate: "Irate", Orate: "Orate", S_table: "S_table", T_Table: "TTable", TTable: "TTable", PPOone: "PPOone" };
+        const clear = { PPOone: () => { userPPOoneData = []; }, Irate: () => { userIrateData = []; }, S_table: () => { userSTableData = []; }, Orate: () => { userOrateData = []; }, TTable: () => { userTTableData = []; } };
+        const blocks = {};
+        parts.forEach(p => { const nl = p.indexOf("\n"); const nm = map[p.slice(0, nl).split("|")[0]]; if (nm) blocks[nm] = p.slice(nl + 1); });
+        const ta = $("txtExcelPaste");
+        ["PPOone", "Irate", "S_table", "Orate", "TTable"].forEach(nm => {
+            clear[nm]();
+            const body = (blocks[nm] || "").replace(/\n+$/, "");
+            if (body.trim()) { ta.value = body; try { window.__doPaste(ta, nm); } catch (e) { console.error(nm, e); } }
+        });
+        ta.value = "";
+        results = []; paintCaps(); $("tallyMini").innerHTML = ""; hideTally(true);
+        UpdateDataLEDs(); populateDetailIDDropdown();
+        window.switchSheet("PPOone");
+        const d = dataOf(), empt = [];
+        const line = ["PPOone", "Irate", "S_table", "Orate", "TTable"].map(nm => { const k = Object.keys(NAMES).find(x => NAMES[x] === nm), n = d[k].length; if (!n) empt.push(nm); return nm + ": " + (n ? n + " rows" : "EMPTY"); }).join("  |  ");
+        const b = $("xferBadge"); b.textContent = "TRANSFER " + (stamp || new Date().toLocaleTimeString()); b.className = "xfer-badge ok";
+        updateHint("TRANSFER received from Excel" + (stamp ? " (" + stamp + ")" : "") + "\n" + line + (empt.length ? "\n! EMPTY in Excel: " + empt.join(", ") + " - the other sheets are loaded." : "\nAll 5 sheets loaded. Press MASTER TALLY."));
+        if (empt.length) setTimeout(() => alert("These sheets were EMPTY in Excel:\n\n" + empt.join("\n") + "\n\nThe other sheets are loaded."), 60);
+    };
+
+    // ---------- wire the buttons ----------
+    $("btnTally").addEventListener("click", runMasterTally);
+    buildSections();
+    // header height -> workspace offset (no more fixed pixel hacks)
+    const hz = $("hdrZone");
+    const setH = () => document.documentElement.style.setProperty("--hdrH", Math.ceil(hz.getBoundingClientRect().height) + 2 + "px");
+    setH(); if (window.ResizeObserver) new ResizeObserver(setH).observe(hz); window.addEventListener("resize", setH);
+
+    // auto-load data written by the Excel TRANSFER button (local copy of this page only)
+    window.addEventListener("load", () => {
+        if (location.protocol !== "file:") return;
+        const s = document.createElement("script");
+        s.src = "eclipse_data.js?t=" + Date.now();
+        s.onload = () => { try { if (window.ECLIPSE_BUNDLE) setTimeout(() => window.ingestBundle(window.ECLIPSE_BUNDLE), 80); } catch (e) { console.error(e); } };
+        s.onerror = () => { };
+        document.head.appendChild(s);
+    });
+})();
 </script>
 </body>
 </html>
