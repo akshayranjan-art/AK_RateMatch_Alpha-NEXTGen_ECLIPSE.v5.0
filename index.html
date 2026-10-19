@@ -498,6 +498,12 @@ table { border-collapse: collapse; font-family: Arial, sans-serif; font-size: 13
         </div>
         <div class="hdr-row">
             <button id="btnTally" class="vba-btn btn-tally">▶ MASTER TALLY</button>
+            <button id="btnClear" class="vba-btn btn-clear">MASTER CLEAR</button>
+            <button id="btnPpoLink" class="vba-btn btn-reset">PPOone LINK</button>
+            <span id="tallyMini" class="tally-mini"></span>
+        </div>
+        <!-- old controls stay in the page (hidden) so the 26 audits keep working exactly as before -->
+        <div id="oldCtl" style="display:none">
             <div class="ctl"><label>MARKET</label><input id="inMarket" class="in-box" type="text" autocomplete="off"></div>
             <div class="ctl"><label>OPS TBL #</label><input id="inOps" class="in-box" type="text" autocomplete="off"></div>
             <span class="ticks">
@@ -507,17 +513,12 @@ table { border-collapse: collapse; font-family: Arial, sans-serif; font-size: 13
                 <label><input type="checkbox" id="tkO"> Orate</label>
             </span>
             <button id="btnExtract" class="vba-btn btn-audit">EXTRACT</button>
-            <button id="btnClear" class="vba-btn btn-clear">MASTER CLEAR</button>
-            <button id="btnPpoLink" class="vba-btn btn-reset">PPOone LINK</button>
-            <span id="tallyMini" class="tally-mini"></span>
-        </div>
-        <!-- old controls stay in the page (hidden) so the 26 audits keep working exactly as before -->
-        <div id="oldCtl" style="display:none">
+
             <select id="cmbDetailID"><option value="">-- Select --</option></select>
             <button id="btnResetDetailID" class="vba-btn btn-reset">RESET LAYOUT</button>
             <button id="btnRun" class="vba-btn btn-audit">REFRESH</button>
         </div>
-        <div class="sec-wrap" id="secWrap" style="display:none"></div>
+        <div class="sec-wrap" id="secWrap"></div>
         <div class="hint-row"><textarea id="txtHint" class="hint-box" readonly> Hint</textarea></div>
         <!-- the six audit dropdowns stay here (hidden) so every audit keeps working exactly as before -->
         <div id="hiddenSelects" style="display:none">
