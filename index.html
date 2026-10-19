@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AK_AUDITRate_Alpha NEXTGen_ECLIPSE v6.0</title>
+    <title>AK_AUDITRate_Alpha NEXTGen_ECLIPSE v7.0</title>
     <style>
         /* 🧬 HYPER PREMIUM HORIZONTAL & VERTICAL GLOW SLIDERS */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -434,6 +434,20 @@ table { border-collapse: collapse; font-family: Arial, sans-serif; font-size: 13
 .badge.EMPTY{background:rgba(250,204,21,.12);color:#facc15;border:1px solid rgba(250,204,21,.4)}
 #tallyPanel .tools{margin-top:10px;display:flex;gap:8px}
 #tallyPanel table.tt td.n{text-align:right}
+
+/* ===== v7 additions ===== */
+.login-badge{font-size:10px;color:#fcd34d;letter-spacing:.5px;border:1px solid rgba(252,211,77,.4);border-radius:20px;padding:1px 9px}
+.login-badge b{color:#fff}
+.live-badge{font-size:9px;color:#94a3b8;border:1px solid rgba(148,163,184,.3);border-radius:20px;padding:1px 8px;letter-spacing:.4px}
+.live-badge.on{color:#00ff88;border-color:rgba(0,255,136,.5)}
+.live-badge.bad{color:#ff7a93;border-color:rgba(255,56,96,.55)}
+.btn-connect{position:static;left:auto;top:auto;font-size:9px;padding:2px 9px;border:1px solid #38bdf8;color:#e0f7ff;background:rgba(56,189,248,.18)}
+.btn-color{position:static;left:auto;top:auto;font-size:9px;padding:2px 9px;border:1px solid #f59e0b;color:#fff3d6;background:rgba(245,158,11,.2)}
+.in-box{width:130px;background:#0b1426;border:1px solid rgba(125,211,252,.35);color:#e2e8f0;border-radius:6px;padding:3px 7px;font-size:11px;outline:none}
+.in-box:focus{border-color:#00e5ff;box-shadow:0 0 6px rgba(0,229,255,.5)}
+.ticks{display:flex;gap:10px;font-size:10px;color:#cbd5e1}
+.ticks label{display:flex;align-items:center;gap:3px;cursor:pointer}
+.hint-box{height:46px}
     </style>
 </head>
 
@@ -456,9 +470,13 @@ table { border-collapse: collapse; font-family: Arial, sans-serif; font-size: 13
 <body>
     <div class="fixed-header-zone" id="hdrZone">
         <div class="title-bar">
-            <span>⚡ AK_AUDITRate_Alpha NEXTGen_ECLIPSE v6.0</span>
+            <span>⚡ AK_AUDITRate_Alpha NEXTGen_ECLIPSE v7.0</span>
             <span class="tb-right">
+                <span class="login-badge" title="Login ID of the Excel user">LOGIN ID: <b id="loginId">-</b></span>
+                <button type="button" id="btnConnect" class="vba-btn btn-connect" title="Choose eclipse_data.txt once - after that Excel TRANSFER updates this page live">CONNECT DATA FILE</button>
+                <span id="liveBadge" class="live-badge">NOT CONNECTED</span>
                 <span id="xferBadge" class="xfer-badge">NO TRANSFER YET</span>
+                <button type="button" id="btnColor" class="vba-btn btn-color">COLOR</button>
                 <button id="cmdSupport" class="vba-btn btn-support">SUPPORT</button>
                 <button class="vba-btn btn-clear" style="padding: 1px 4px; font-size: 8px;" onclick="window.close()">X</button>
             </span>
@@ -479,14 +497,27 @@ table { border-collapse: collapse; font-family: Arial, sans-serif; font-size: 13
             </div>
         </div>
         <div class="hdr-row">
-            <div class="ctl"><label>DETAIL ID</label><select id="cmbDetailID"><option value="">-- Dropdown Loaded --</option></select></div>
             <button id="btnTally" class="vba-btn btn-tally">▶ MASTER TALLY</button>
-            <button id="btnResetDetailID" class="vba-btn btn-reset">RESET LAYOUT</button>
-            <button id="btnRun" class="vba-btn btn-audit">REFRESH</button>
-            <button id="btnClear" class="vba-btn btn-clear">CLEAR FRAMES</button>
+            <div class="ctl"><label>MARKET</label><input id="inMarket" class="in-box" type="text" autocomplete="off"></div>
+            <div class="ctl"><label>OPS TBL #</label><input id="inOps" class="in-box" type="text" autocomplete="off"></div>
+            <span class="ticks">
+                <label><input type="checkbox" id="tkT"> T_Table</label>
+                <label><input type="checkbox" id="tkI"> Irate</label>
+                <label><input type="checkbox" id="tkS"> S_table</label>
+                <label><input type="checkbox" id="tkO"> Orate</label>
+            </span>
+            <button id="btnExtract" class="vba-btn btn-audit">EXTRACT</button>
+            <button id="btnClear" class="vba-btn btn-clear">MASTER CLEAR</button>
+            <button id="btnPpoLink" class="vba-btn btn-reset">PPOone LINK</button>
             <span id="tallyMini" class="tally-mini"></span>
         </div>
-        <div class="sec-wrap" id="secWrap"></div>
+        <!-- old controls stay in the page (hidden) so the 26 audits keep working exactly as before -->
+        <div id="oldCtl" style="display:none">
+            <select id="cmbDetailID"><option value="">-- Select --</option></select>
+            <button id="btnResetDetailID" class="vba-btn btn-reset">RESET LAYOUT</button>
+            <button id="btnRun" class="vba-btn btn-audit">REFRESH</button>
+        </div>
+        <div class="sec-wrap" id="secWrap" style="display:none"></div>
         <div class="hint-row"><textarea id="txtHint" class="hint-box" readonly> Hint</textarea></div>
         <!-- the six audit dropdowns stay here (hidden) so every audit keeps working exactly as before -->
         <div id="hiddenSelects" style="display:none">
@@ -3855,7 +3886,7 @@ function triggerPremiumLockdown() {
                     color: #717f96; 
                     font-weight: 400;
                     letter-spacing: 0.3px;
-                ">AK_AUDITRate_Alpha NEXTGen_ECLIPSE v6.0</h3>
+                ">AK_AUDITRate_Alpha NEXTGen_ECLIPSE v7.0</h3>
                 
                 <!-- Clean Digital Divider -->
                 <div style="height: 1px; background: rgba(255,255,255,0.06); width: 100%; margin-bottom: 24px;"></div>
@@ -4010,7 +4041,8 @@ document.getElementById("cmdSupport").addEventListener("click", function () {
     ];
     const ITEMS = [];            // flat list of real items
     GROUPS.forEach(g => g.items.forEach(a => { if (a === "|") return; ITEMS.push({ sel: a[0], val: a[1], label: a[2], need: a[3].split(""), view: !!a[4], grp: g.title, col: g.col }); }));
-    let results = [], busy = false, tallyShown = false, lastStamp = "";
+    let results = [], errors = [], busy = false, tallyShown = false, lastStamp = "", ppoLink = "", loginIdTxt = "";
+    const ERR_CAP = 5000; let lastSawBanner = true;
 
     // ---------- build the section buttons ----------
     function buildSections() {
@@ -4056,9 +4088,38 @@ document.getElementById("cmdSupport").addEventListener("click", function () {
 
     // ---------- MASTER TALLY ----------
     const GREEN = "rgb(212, 237, 218)", RED = "rgb(248, 215, 218)";
-    function countColours() {
-        let g = 0, r = 0;
-        document.querySelectorAll("#matrixBody td").forEach(td => { const c = td.style.backgroundColor; if (c === GREEN) g++; else if (c === RED) r++; });
+    function headerLabels() {
+        const rows = document.querySelectorAll("#matrixHeader tr"), tr = rows[rows.length - 1], out = [];
+        if (!tr) return out;
+        Array.prototype.forEach.call(tr.cells, th => {
+            let t = Array.prototype.filter.call(th.childNodes, x => x.nodeType === 3).map(x => x.textContent).join("").trim();
+            if (!t) t = (th.textContent || "").split("▼")[0].trim();
+            const n = th.colSpan || 1; for (let k = 0; k < n; k++) out.push(t);
+        });
+        return out;
+    }
+    // counts green / red cells; red cells are also collected for the ERROR LIST (grey or any other colour is never an error)
+    function countColours(it) {
+        let g = 0, r = 0, kept = 0, below = false, sawBanner = false, bIdx = 0;
+        const hdr = headerLabels(), rows = document.querySelectorAll("#matrixBody tr");
+        for (let i = 0; i < rows.length; i++) {
+            if (rows[i].classList.contains("banner-row")) { below = true; sawBanner = true; bIdx = i + 1; continue; }
+            const cells = rows[i].cells;
+            for (let j = 0; j < cells.length; j++) {
+                const c = cells[j].style.backgroundColor;
+                if (c === GREEN) g++;
+                else if (c === RED && below) {                       // red above the banner (PPOone frame) is NOT an error
+                    r++;
+                    if (it && kept < ERR_CAP) {
+                        kept++;
+                        let rt = "", n = 0;
+                        for (let k = 0; k < cells.length && n < 7; k++) { const t = (cells[k].textContent || "").trim(); if (t) { rt += (n ? " | " : "") + t; n++; } }
+                        errors.push({ it, row: i + 1 - bIdx, col: hdr[j] || ("col " + (j + 1)), val: (cells[j].textContent || "").trim(), rt });
+                    }
+                }
+            }
+        }
+        lastSawBanner = sawBanner;
         return { g, r };
     }
     async function runMasterTally() {
@@ -4067,7 +4128,7 @@ document.getElementById("cmdSupport").addEventListener("click", function () {
         hideTally(true);
         $("dataDisplayWorkspace").style.display = "none";          // nothing to draw on screen while the 26 checks run = much faster
         const jobs = ITEMS.filter(i => !i.view), realST = window.setTimeout, t0 = performance.now();
-        results = [];
+        results = []; errors = [];
         for (let n = 0; n < jobs.length; n++) {
             const it = jobs[n], miss = missingOf(it), rec = { it, miss, g: 0, r: 0, status: "SKIP" };
             if (!miss.length) {
@@ -4077,7 +4138,7 @@ document.getElementById("cmdSupport").addEventListener("click", function () {
                 } catch (e) { rec.status = "ERROR"; rec.err = e.message; }
                 finally { window.setTimeout = realST; }
                 if (rec.status !== "ERROR") {
-                    const c = countColours(); rec.g = c.g; rec.r = c.r;
+                    const c = countColours(it); rec.g = c.g; rec.r = c.r;
                     rec.status = c.r > 0 ? "FAIL" : (c.g > 0 ? "PASS" : "EMPTY");
                 }
             }
@@ -4108,7 +4169,7 @@ document.getElementById("cmdSupport").addEventListener("click", function () {
             panel.innerHTML = "<h2>MASTER TALLY</h2><div class='sum'>No tally yet. Press <b class='p'>▶ MASTER TALLY</b> - every check runs in one go.</div>";
             return;
         }
-        const c = counts(); let html = "<h2>MASTER TALLY</h2><div class='sum'><b class='p'>PASS " + c.p + "</b><b class='f'>FAIL " + c.f + "</b><b class='s'>EMPTY " + c.e + " &nbsp;|&nbsp; SKIPPED " + c.s + "</b> run at " + esc(lastStamp) + (secs ? " in " + secs + " s" : "") + " &nbsp; <span id='tStale' style='color:#facc15'></span></div>";
+        const c = counts(); let html = "<h2>MASTER TALLY</h2><div class='sum'><b class='p'>PASS " + c.p + "</b><b class='f'>FAIL " + c.f + "</b><b class='f'>RED CELLS " + results.reduce((a, r) => a + (r.r || 0), 0) + "</b><b class='s'>EMPTY " + c.e + " &nbsp;|&nbsp; SKIPPED " + c.s + "</b> run at " + esc(lastStamp) + (secs ? " in " + secs + " s" : "") + "</div>";
         html += "<table class='tt'><tr><th style='width:34px'>#</th><th>CHECK</th><th>NEEDS</th><th style='text-align:right'>MATCHED (green)</th><th style='text-align:right'>NOT MATCHED (red)</th><th>RESULT</th></tr>";
         let last = "", n = 0;
         results.forEach((r, i) => {
@@ -4118,14 +4179,38 @@ document.getElementById("cmdSupport").addEventListener("click", function () {
             html += "<tr class='row' data-i='" + i + "'><td>" + n + "</td><td>" + esc(r.it.label) + "</td><td style='color:#94a3b8'>" + need + (r.miss.length ? " <span style='color:#facc15'>(missing: " + r.miss.join(", ") + ")</span>" : "") + "</td><td class='n'>" + (r.status === "SKIP" ? "-" : r.g) + "</td><td class='n'>" + (r.status === "SKIP" ? "-" : r.r) + "</td><td><span class='badge " + r.status + "'>" + (r.status === "ERROR" ? "ERROR" : r.status) + "</span></td></tr>";
         });
         html += "</table><div class='tools'><button class='vba-btn btn-tally' id='btnTallyAgain'>▶ RUN AGAIN</button><button class='vba-btn btn-reset' id='btnTallyCopy'>COPY RESULT</button></div>";
+        // ---- ERROR LIST: only RED cells (red = not matched = error). Grey / other colours are never counted. ----
+        const totRed = results.reduce((a, r) => a + (r.r || 0), 0), failN = results.filter(r => r.status === "FAIL").length;
+        html += "<h2 id='errTop' style='margin-top:18px;color:#ff7a93'>ERROR LIST <span style='font-size:11px;letter-spacing:0;color:#cbd5e1'>- red cells only</span></h2>";
+        if (!totRed) {
+            html += "<div class='sum'><b class='p'>NO RED CELLS</b> every check is clean.</div>";
+        } else {
+            html += "<div class='sum'><b class='f'>" + totRed + " red cells</b><b class='f'>" + failN + " checks with errors</b>" + (errors.length < totRed ? "<span style='color:#facc15'>list shows the first " + ERR_CAP + " of each check</span>" : "") + "</div>";
+            html += "<table class='tt' id='errTable'><tr><th style='width:46px'>#</th><th>CHECK</th><th style='width:60px;text-align:right'>ROW</th><th>COLUMN</th><th>VALUE</th><th>ROW DATA</th></tr>";
+            let lastIt = null, lim = Math.min(errors.length, 20000);
+            for (let i = 0; i < lim; i++) {
+                const e = errors[i];
+                if (e.it !== lastIt) { lastIt = e.it; const rr = results.find(x => x.it === e.it); html += "<tr class='grp'><td colspan='6' style='color:#ff9db0'>" + esc(e.it.grp + "  -  " + e.it.label) + "  &nbsp;(" + (rr ? rr.r : 0) + " red)</td></tr>"; }
+                html += "<tr class='row' data-e='" + i + "'><td>" + (i + 1) + "</td><td>" + esc(e.it.label) + "</td><td class='n'>" + e.row + "</td><td>" + esc(e.col) + "</td><td style='color:#ffb3c1'>" + esc(e.val) + "</td><td style='color:#94a3b8'>" + esc(e.rt) + "</td></tr>";
+            }
+            html += "</table><div class='tools'><button class='vba-btn btn-reset' id='btnErrCopy'>COPY ERROR LIST</button><button class='vba-btn btn-audit' id='btnErrCsv'>DOWNLOAD CSV</button></div>";
+        }
         panel.innerHTML = html;
         panel.querySelectorAll("tr.row").forEach(tr => tr.addEventListener("click", () => openSection(results[+tr.dataset.i].it)));
+        panel.querySelectorAll("tr[data-e]").forEach(tr => tr.addEventListener("click", () => openSection(errors[+tr.dataset.e].it)));
+        const tsvErr = () => ["Check\tRow\tColumn\tValue\tRow data"].concat(errors.map(e => [e.it.grp + " - " + e.it.label, e.row, e.col, e.val, e.rt].join("\t"))).join("\n");
+        if ($("btnErrCopy")) $("btnErrCopy").onclick = () => { try { navigator.clipboard.writeText(tsvErr()); updateHint("Error list copied (" + errors.length + " rows)."); } catch (x) { updateHint("Copy not allowed by the browser."); } };
+        if ($("btnErrCsv")) $("btnErrCsv").onclick = () => {
+            const q = v => '"' + String(v).replace(/"/g, '""') + '"';
+            const csv = "\ufeff" + ["Check,Row,Column,Value,Row data"].concat(errors.map(e => [q(e.it.grp + " - " + e.it.label), e.row, q(e.col), q(e.val), q(e.rt)].join(","))).join("\r\n");
+            const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" })); a.download = "ECLIPSE_error_list.csv"; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+        };
         $("btnTallyAgain").onclick = runMasterTally;
         $("btnTallyCopy").onclick = () => {
             const t = ["Check\tNeeds\tMatched\tNot matched\tResult"].concat(results.map(r => [r.it.grp + " - " + r.it.label, r.it.need.map(k => NAMES[k]).join("+"), r.g, r.r, r.status].join("\t"))).join("\n");
             try { navigator.clipboard.writeText(t); updateHint("Tally result copied. Paste it into Excel / mail."); } catch (e) { updateHint("Copy not allowed by the browser."); }
         };
-        const mini = $("tallyMini"); mini.innerHTML = "<b class='p'>PASS " + c.p + "</b> &nbsp; <b class='f'>FAIL " + c.f + "</b> &nbsp; <b class='s'>EMPTY " + c.e + " / SKIP " + c.s + "</b>";
+        const mini = $("tallyMini"); mini.innerHTML = "<b class='p'>PASS " + c.p + "</b> &nbsp; <b class='f'>FAIL " + c.f + "</b> &nbsp; <b class='f'>RED " + totRed + "</b> &nbsp; <b class='s'>EMPTY " + c.e + " / SKIP " + c.s + "</b>";
         const led = $("ledTALLY"); if (led) led.className = "led-indicator " + (c.f === 0 && c.p > 0 ? "led-green" : "led-red");
     }
     function hideTally(silent) {
@@ -4139,13 +4224,13 @@ document.getElementById("cmdSupport").addEventListener("click", function () {
     const _sw = window.switchSheet;
     window.switchSheet = function (n) { hideTally(true); ITEMS.forEach(x => x.btn && x.btn.classList.remove("on")); return _sw(n); };
 
-    // Detail ID changed -> tally is stale
-    $("cmbDetailID").addEventListener("change", () => { const s = $("tStale"); if (s) s.textContent = "Detail ID changed - press MASTER TALLY again."; });
-
     // ---------- TRANSFER from Excel ----------
     window.ingestBundle = function (text) {
-        const parts = String(text).replace(/\r/g, "").split("\n@@SHEET|");
-        const head = parts.shift(), stamp = (head.split("|")[1] || "").trim();
+        text = String(text).replace(/^\uFEFF/, "").replace(/\r/g, "").replace(/\n@@END\s*$/, "");
+        const parts = text.split("\n@@SHEET|");
+        const head = parts.shift(), hf = head.split("|"), stamp = (hf[1] || "").trim();
+        if (hf[2] !== undefined) { loginIdTxt = (hf[2] || "").trim(); $("loginId").textContent = loginIdTxt || "-"; }
+        if (hf[3] !== undefined) ppoLink = (hf.slice(3).join("|") || "").trim();
         const map = { Irate: "Irate", Orate: "Orate", S_table: "S_table", T_Table: "TTable", TTable: "TTable", PPOone: "PPOone" };
         const clear = { PPOone: () => { userPPOoneData = []; }, Irate: () => { userIrateData = []; }, S_table: () => { userSTableData = []; }, Orate: () => { userOrateData = []; }, TTable: () => { userTTableData = []; } };
         const blocks = {};
@@ -4157,7 +4242,7 @@ document.getElementById("cmdSupport").addEventListener("click", function () {
             if (body.trim()) { ta.value = body; try { window.__doPaste(ta, nm); } catch (e) { console.error(nm, e); } }
         });
         ta.value = "";
-        results = []; paintCaps(); $("tallyMini").innerHTML = ""; hideTally(true);
+        results = []; errors = []; paintCaps(); $("tallyMini").innerHTML = ""; hideTally(true);
         UpdateDataLEDs(); populateDetailIDDropdown();
         window.switchSheet("PPOone");
         const d = dataOf(), empt = [];
@@ -4166,6 +4251,109 @@ document.getElementById("cmdSupport").addEventListener("click", function () {
         updateHint("TRANSFER received from Excel" + (stamp ? " (" + stamp + ")" : "") + "\n" + line + (empt.length ? "\n! EMPTY in Excel: " + empt.join(", ") + " - the other sheets are loaded." : "\nAll 5 sheets loaded. Press MASTER TALLY."));
         if (empt.length) setTimeout(() => alert("These sheets were EMPTY in Excel:\n\n" + empt.join("\n") + "\n\nThe other sheets are loaded."), 60);
     };
+
+    // ---------- MASTER CLEAR (the old CLEAR FRAMES handler clears the 5 sheets; this asks first and also wipes the tally) ----------
+    $("btnClear").addEventListener("click", ev => {
+        if (!confirm("MASTER CLEAR: all 5 sheets and the tally will be cleared. Continue?")) { ev.stopImmediatePropagation(); ev.preventDefault(); }
+    }, true);
+    $("btnClear").addEventListener("click", () => {
+        results = []; errors = []; paintCaps(); $("tallyMini").innerHTML = ""; hideTally(true);
+        const led = $("ledTALLY"); if (led) led.className = "led-indicator";
+        UpdateDataLEDs(); populateDetailIDDropdown();
+        $("inMarket").value = ""; $("inOps").value = "";["tkT", "tkI", "tkS", "tkO"].forEach(k => { $(k).checked = false; });
+        const b = $("xferBadge"); b.textContent = "CLEARED"; b.className = "xfer-badge";
+        updateHint("MASTER CLEAR done - press TRANSFER in Excel to load fresh data.");
+    });
+
+    // ---------- EXTRACT: rows of the ticked sheets that contain Market and OPS Tbl # (same simple search as Excel) ----------
+    function rowText(r) { return Object.keys(r).map(k => { const v = r[k]; return v && typeof v === "object" ? JSON.stringify(v) : String(v == null ? "" : v); }).join("|"); }
+    $("btnExtract").addEventListener("click", () => {
+        const mk = $("inMarket").value.trim(), op = $("inOps").value.trim();
+        if (!mk) { alert("Please enter Market."); return; }
+        if (!op) { alert("Please enter OPS Tbl #."); return; }
+        const pick = [["tkT", "T_Table", "T"], ["tkI", "Irate", "I"], ["tkS", "S_table", "S"], ["tkO", "Orate", "O"]].filter(a => $(a[0]).checked);
+        if (!pick.length) { alert("Please tick at least one table (T_Table / Irate / S_table / Orate)."); return; }
+        const d = dataOf(), hits = [], mkl = mk.toLowerCase(), opl = op.toLowerCase();
+        pick.forEach(p => (d[p[2]] || []).forEach((r, i) => { const t = rowText(r).toLowerCase(); if (t.indexOf(mkl) >= 0 && t.indexOf(opl) >= 0) hits.push({ sh: p[1], n: i + 1, t: rowText(r).replace(/\|+/g, " | ") }); }));
+        hideTally(true);
+        const panel = $("tallyPanel"); document.querySelectorAll(".capsule-btn").forEach(b => b.classList.remove("active"));
+        $("dataDisplayWorkspace").style.display = "none"; panel.style.display = "block"; tallyShown = true; window.TALLY_VISIBLE = false;
+        let h = "<h2>EXTRACT RESULT</h2><div class='sum'><b class='p'>" + hits.length + " rows</b> Market <b class='s'>" + esc(mk) + "</b> OPS <b class='s'>" + esc(op) + "</b> in " + pick.map(p => p[1]).join(", ") + "</div>";
+        if (hits.length) {
+            h += "<table class='tt'><tr><th style='width:46px'>#</th><th style='width:90px'>SHEET</th><th style='width:60px;text-align:right'>ROW</th><th>ROW DATA</th></tr>";
+            hits.slice(0, 5000).forEach((x, i) => { h += "<tr><td>" + (i + 1) + "</td><td>" + x.sh + "</td><td class='n'>" + x.n + "</td><td style='color:#cbd5e1'>" + esc(x.t) + "</td></tr>"; });
+            h += "</table>" + (hits.length > 5000 ? "<div class='sum'>first 5000 shown</div>" : "") + "<div class='tools'><button class='vba-btn btn-reset' id='btnExCopy'>COPY ROWS</button></div>";
+        }
+        panel.innerHTML = h;
+        if ($("btnExCopy")) $("btnExCopy").onclick = () => { try { navigator.clipboard.writeText(hits.map(x => x.sh + "\t" + x.n + "\t" + x.t).join("\n")); updateHint("Rows copied."); } catch (e) { updateHint("Copy not allowed by the browser."); } };
+        updateHint("EXTRACT: " + hits.length + " rows found.");
+    });
+
+    // ---------- PPOone LINK (the address comes from Excel with every TRANSFER) ----------
+    $("btnPpoLink").addEventListener("click", () => {
+        if (!ppoLink) { updateHint("No PPOone link yet - press TRANSFER in Excel once (the link is set in Excel > modUser > PPOLink)."); return; }
+        window.open(ppoLink, "_blank", "noopener");
+        updateHint("PPOone link opened: " + ppoLink);
+    });
+
+    // ---------- COLOR: cycles the accent colour of the page ----------
+    const HUES = [0, 40, 120, 200, 280, 330]; let hi = 0;
+    try { hi = (+localStorage.getItem("eclHue") || 0) % HUES.length; } catch (e) { }
+    const applyHue = () => { document.documentElement.style.filter = HUES[hi] ? "hue-rotate(" + HUES[hi] + "deg)" : ""; };
+    applyHue();
+    $("btnColor").addEventListener("click", () => { hi = (hi + 1) % HUES.length; applyHue(); try { localStorage.setItem("eclHue", hi); } catch (e) { } });
+
+    // ---------- LIVE data file (Vercel page <-> Excel TRANSFER) ----------
+    // Choose eclipse_data.txt once. The page then reads it every second and reloads the 5 sheets when Excel writes it again.
+    // The file never leaves this computer - the browser only reads it.
+    const live = { h: null, sig: "", timer: 0, ok: false };
+    const idb = (mode, fn) => new Promise((res, rej) => {
+        let q; try { q = indexedDB.open("eclipse_live", 1); } catch (e) { rej(e); return; }
+        q.onupgradeneeded = () => q.result.createObjectStore("kv");
+        q.onerror = () => rej(q.error);
+        q.onsuccess = () => { try { const tx = q.result.transaction("kv", mode), st = tx.objectStore("kv"), rq = fn(st); tx.oncomplete = () => res(rq && rq.result); tx.onerror = () => rej(tx.error); tx.onabort = () => rej(tx.error); } catch (e) { rej(e); } };
+    });
+    function setLive(txt, cls) { const b = $("liveBadge"); b.textContent = txt; b.className = "live-badge " + (cls || ""); }
+    async function pollOnce() {
+        if (!live.h) return;
+        try {
+            const f = await live.h.getFile(), sig = f.lastModified + ":" + f.size;
+            if (sig === live.sig) return;
+            const txt = await f.text();
+            if (txt.indexOf("#ECLIPSE_BUNDLE") < 0 || !/\n@@END\s*$/.test(txt)) return;      // empty or half written: try again next second
+            live.sig = sig; window.ingestBundle(txt); setLive("LIVE " + new Date().toLocaleTimeString(), "on");
+        } catch (e) { setLive("FILE NOT READABLE", "bad"); }
+    }
+    function startLive() { clearInterval(live.timer); live.sig = ""; pollOnce(); live.timer = setInterval(pollOnce, 1000); live.ok = true; setLive("LIVE - waiting for TRANSFER", "on"); $("btnConnect").style.display = "none"; }
+    async function connectClick() {
+        try {
+            if (live.h && window.showOpenFilePicker) {                              // saved file, permission to renew
+                if ((await live.h.requestPermission({ mode: "read" })) === "granted") { startLive(); return; }
+            }
+            if (window.showOpenFilePicker) {
+                const [h] = await window.showOpenFilePicker({ multiple: false, types: [{ description: "ECLIPSE data file", accept: { "text/plain": [".txt"] } }] });
+                live.h = h; startLive();
+                idb("readwrite", st => st.put(h, "h")).catch(() => { });
+            } else {
+                const inp = document.createElement("input"); inp.type = "file"; inp.accept = ".txt,.js";
+                inp.onchange = async () => { const f = inp.files[0]; if (!f) return; let t = await f.text(); const m = t.match(/ECLIPSE_BUNDLE\s*=\s*("[\s\S]*")\s*;?\s*$/); if (m) { try { t = JSON.parse(m[1]); } catch (e) { } } window.ingestBundle(t); setLive("LOADED (this browser has no live link)", "on"); };
+                inp.click();
+            }
+        } catch (e) { if (e && e.name !== "AbortError") setLive("COULD NOT CONNECT", "bad"); }
+    }
+    $("btnConnect").addEventListener("click", connectClick);
+    if (location.protocol === "file:") { $("btnConnect").style.display = "none"; setLive("LOCAL PAGE", "on"); }
+    else (async () => {
+        try {
+            if (!window.showOpenFilePicker) { $("btnConnect").textContent = "LOAD DATA FILE"; return; }
+            const h = await idb("readonly", st => st.get("h"));
+            if (h) {
+                live.h = h; const p = await h.queryPermission({ mode: "read" });
+                if (p === "granted") { startLive(); return; }
+                $("btnConnect").textContent = "RECONNECT DATA FILE"; setLive("CLICK RECONNECT (one click)", "bad");
+            }
+        } catch (e) { }
+    })();
 
     // ---------- wire the buttons ----------
     $("btnTally").addEventListener("click", runMasterTally);
